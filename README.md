@@ -8,7 +8,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <h2>Video Demonstration</h2>
 
-- ### [YouTube: How to Deploy on-premises Active Directory within Azure Compute](https://www.youtube.com)
+- ### [YouTube: How to Deploy on-premises Active Directory within Azure Compute](https://www.youtube.com/watch?v=lzHRxxSmQXc)
 
 <h2>Environments and Technologies Used</h2>
 
@@ -24,33 +24,20 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <h2>High-Level Deployment and Configuration Steps</h2>
 
-- Step 1
-- Step 2
-- Step 3
-- Step 4
+- Create the Domain Controller VM in Azure and name it DC-1 the Login with Remote Desktop
+- Set DC-1 NIC private IP address to static and enable ICMPv4 on local firewall
+- Create the Client VM named Client-1 (Use same resource group and vnet from DC-1)
+- Login to CLient-1 with Remote Desktop and ping DC-1 private IP address with Perpetual Ping
+- In DC-1 install Active Directory services and set upnew forest as (mydomain.com\labuser) then login under labuser
+- In Active Directory Users and Computers (ADUC) create two Organizational Units (OU) labeled "_EMPLOYEES" and "_ADMINS"
+- Creat random employee (Jane Doe) with username Jane_Admin then Add Jane to security groups
+- Login to DC-1 as Jane_Admin
+- In Azure portal, Set Client-1 DNS settingd to DC-1's private IP address and restart CLient-1
+- Lohin to Client-1 as labuser and add to Domain Controller
+- Verify that CLient-1 shows up in DC-1's ADUC inside "computers" container on root of Domian
+- In Client-1, Open system properties, Click remote desktop and allow "domain Users" access to Remote Desktop
+- In DC-1 (as Jane_Admin) Open Powershell_ise as an administrator
+- Create a new file and paste contents of the "script" into it then run the script and observe the accounts being created
+- Attempt to login into Client-1 with one of the Accounts
 
-<h2>Deployment and Configuration Steps</h2>
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
